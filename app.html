@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dein Text-Workspace</h2>
+<form id="gen-form" class="panel">
+  <label>Textart</label>
+  <select name="type">
+    <option>Social Media Post</option>
+    <option>Produktbeschreibung</option>
+    <option>E-Mail</option>
+    <option>Bewerbung</option>
+  </select>
+  <label>Tonalität</label>
+  <select name="tone">
+    <option>locker</option>
+    <option>professionell</option>
+    <option>humorvoll</option>
+    <option>emotional</option>
+  </select>
+  <label>Thema</label>
+  <input name="topic" placeholder="z. B. Neue Uhr im Online-Shop">
+  <button class="btn" type="submit">Text generieren</button>
+</form>
+<pre id="gen-output" class="output"></pre>
+<script>
+document.getElementById('gen-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const res = await fetch('/api/generate', {method:'POST'});
+  const data = await res.json();
+  const out = document.getElementById('gen-output');
+  if(data.ok){ out.textContent = data.text; }
+  else if(data.error==='paywall'){ out.textContent = 'Gratis-Limit erreicht. Bitte Tarif wählen.'; }
+  else { out.textContent = 'Bitte einloggen.'; }
+});
+</script>
+{% endblock %}

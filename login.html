@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form method="post" class="auth-form">
+  <label>E-Mail</label>
+  <input type="email" name="email" required>
+  <label>Passwort</label>
+  <input type="password" name="password" required>
+  <button class="btn" type="submit">Einloggen</button>
+</form>
+<div class="oauth">
+  <p>Oder 1-Klick-Login:</p>
+  <div class="oauth-buttons">
+    <a class="btn ghost" href="/auth/google">Google</a>
+    <a class="btn ghost" href="/auth/apple">Apple</a>
+    <a class="btn ghost" href="/auth/facebook">Facebook</a>
+    <a class="btn ghost" href="/auth/x">X</a>
+  </div>
+  <p class="muted">Hinweis: OAuth-Routen sind im Starter-Skelett noch Platzhalter.</p>
+</div>
+{% endblock %}

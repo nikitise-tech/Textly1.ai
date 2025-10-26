@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Textly.ai</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">Textly<span>.ai</span></div>
+    <nav class="nav">
+      <a href="{{ url_for('pricing') }}">Preise</a>
+      {% if current_user %}
+        <a href="{{ url_for('app_page') }}">App</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a class="btn small" href="{{ url_for('register') }}">Registrieren</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  <div class="flash container">
+    {% for category, message in messages %}
+      <div class="flash-msg {{ category }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endwith %}
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>© {{ 2025 }} Textly.ai • <a href="#">Impressum</a> • <a href="#">Datenschutz</a> • <a href="{{ url_for('pricing') }}">Preise</a></p>
+  </div>
+</footer>
+</body>
+</html>

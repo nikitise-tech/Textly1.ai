@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Perfekte Texte in Sekunden – ohne Prompts.</h1>
+  <p>Für Selbstständige & Creator. Einfach Thema eingeben, Ton auswählen, fertig.</p>
+  <div class="cta-row">
+    <a class="btn" href="{{ url_for('register') }}">Jetzt starten</a>
+    <a class="btn ghost" href="{{ url_for('pricing') }}">Preise ansehen</a>
+  </div>
+</section>
+<section class="panel">
+  <h2>Schnelltest (Demo)</h2>
+  {% if not current_user %}
+    <p><a href="{{ url_for('register') }}">Registriere dich</a>, um 3 kostenlose Texte zu generieren.</p>
+  {% else %}
+    <form id="demo-form">
+      <label>Textart</label>
+      <select name="type">
+        <option>Social Media Post</option>
+        <option>Produktbeschreibung</option>
+        <option>E-Mail</option>
+        <option>Bewerbung</option>
+      </select>
+      <label>Tonalität</label>
+      <select name="tone">
+        <option>locker</option>
+        <option>professionell</option>
+        <option>humorvoll</option>
+        <option>emotional</option>
+      </select>
+      <label>Thema</label>
+      <input name="topic" placeholder="z. B. Herbstangebot im Café">
+      <button class="btn" type="submit">Text generieren</button>
+    </form>
+    <pre id="demo-output" class="output"></pre>
+    <script>
+      document.getElementById('demo-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const res = await fetch('/api/generate', {method:'POST'});
+        const data = await res.json();
+        const out = document.getElementById('demo-output');
+        if(data.ok){ out.textContent = data.text; }
+        else if(data.error==='paywall'){ out.textContent = 'Gratis-Limit erreicht. Bitte upgraden.'; }
+        else { out.textContent = 'Bitte einloggen.'; }
+      });
+    </script>
+  {% endif %}
+</section>
+{% endblock %}

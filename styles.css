@@ -1,0 +1,41 @@
+:root{
+  --primary:#6d5dfc;
+  --accent:#a855f7;
+  --text:#0f172a;
+  --muted:#64748b;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --ring:rgba(109,93,252,.2);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#f6f5ff,#ffffff)}
+.container{max-width:1000px;margin:0 auto;padding:24px}
+.header{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:20px}
+.logo span{opacity:.9}
+.nav a{color:#fff;text-decoration:none;margin:0 10px}
+.btn{display:inline-block;background:var(--primary);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;border:1px solid transparent;box-shadow:0 6px 20px var(--ring);transition:transform .08s}
+.btn.small{padding:8px 12px;font-size:14px}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:#fff;color:var(--text);border-color:#e2e8f0}
+.hero{padding:48px 0;text-align:center}
+.hero h1{font-size:36px;margin:0 0 12px}
+.hero p{color:var(--muted)}
+.panel{background:var(--card);border:1px solid #e5e7eb;border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.04);margin:20px 0}
+.auth-form{max-width:420px}
+.auth-form input, select{width:100%;padding:10px 12px;margin:6px 0 14px;border-radius:10px;border:1px solid #e5e7eb}
+.output{background:#0b1020;color:#e2e8f0;border-radius:12px;padding:16px;min-height:100px}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.plan{background:var(--card);border:1px solid #e5e7eb;border-radius:14px;padding:16px;position:relative}
+.plan .price{font-size:28px;margin:8px 0 12px}
+.plan ul{padding-left:16px;color:var(--muted)}
+.plan .badge{position:absolute;right:10px;top:10px;background:var(--accent);color:#fff;padding:4px 8px;border-radius:999px;font-size:12px}
+.flash .flash-msg{padding:10px 12px;border-radius:10px;margin:10px 0}
+.flash .success{background:#ecfeff}
+.flash .error{background:#fee2e2}
+.flash .info{background:#eef2ff}
+.footer{padding:24px 0;color:#475569}
+.legal{color:#64748b;font-size:12px}
+@media (max-width:900px){.plans{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.plans{grid-template-columns:1fr}}
